@@ -19,6 +19,7 @@ module AhoyEmail
         track_links if options[:utm_params] or options[:click]
 
         ahoy_message.mailer = options[:mailer] if ahoy_message.respond_to?(:mailer=)
+        ahoy_message.mailer_action = options[:mailer_action] if ahoy_message.respond_to?(:mailer_action=)
         ahoy_message.subject = message.subject if ahoy_message.respond_to?(:subject=)
         ahoy_message.content = message.to_s if ahoy_message.respond_to?(:content=)
 
