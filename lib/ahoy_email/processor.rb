@@ -10,7 +10,7 @@ module AhoyEmail
     def process
       action_name = mailer.action_name.to_sym
       if options[:message] and (!options[:only] or options[:only].include?(action_name)) and !options[:except].to_a.include?(action_name)
-        @ahoy_message = AhoyEmail.message_model.new
+        @ahoy_message = AhoyEmail.message_model.new(mailer.ahoy_options.except(:message, :mailer, :except))
         ahoy_message.token = generate_token
         ahoy_message.to = message.to.join(", ") if ahoy_message.respond_to?(:to=)
         ahoy_message.user = options[:user]
